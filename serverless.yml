@@ -1,0 +1,48 @@
+org: edsonguardamino
+service: api-inscripciones
+
+provider:
+  name: aws
+  runtime: python3.12
+  iam:
+    role: arn:aws:iam::051476014162:role/LabRole
+
+functions:
+  listar:
+    handler: ListarProgramas.lambda_handler
+    events:
+      - http:
+          path: /programas/listar
+          method: post
+          cors: true
+          integration: lambda
+          request:
+            template:
+              application/json: |
+                {
+                  "method": "$context.httpMethod",
+                  "path": "$context.path",
+                  "headers": {
+                    "Authorization": "$input.params('Authorization')"
+                  },
+                  "body": $input.json('$')
+                }
+  search:
+    handler: ObtenerPrograma.lambda_handler
+    events:
+      - http:
+          path: /programas/search
+          method: post
+          cors: true
+          integration: lambda
+          request:
+            template:
+              application/json: |
+                {
+                  "method": "$context.httpMethod",
+                  "path": "$context.path",
+                  "headers": {
+                    "Authorization": "$input.params('Authorization')"
+                  },
+                  "body": $input.json('$')
+                }
