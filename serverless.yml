@@ -1,5 +1,5 @@
 org: edsonguardamino
-service: api-inscripciones
+service: api-programas
 
 provider:
   name: aws
