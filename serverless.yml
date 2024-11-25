@@ -46,3 +46,20 @@ functions:
                   },
                   "body": $input.json('$')
                 }
+resources:
+  Resources:
+    TablaProgramas:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: tabla_programas
+        AttributeDefinitions:
+          - AttributeName: tenant_id
+            AttributeType: S
+          - AttributeName: c_programa
+            AttributeType: S
+        KeySchema:
+          - AttributeName: tenant_id
+            KeyType: HASH
+          - AttributeName: c_programa
+            KeyType: RANGE
+        BillingMode: PAY_PER_REQUEST
