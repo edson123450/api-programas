@@ -5,7 +5,7 @@ provider:
   name: aws
   runtime: python3.12
   iam:
-    role: arn:aws:iam::051476014162:role/LabRole
+    role: arn:aws:iam::547527107767:role/LabRole
 
 functions:
   listar:
@@ -63,3 +63,5 @@ resources:
           - AttributeName: c_programa
             KeyType: RANGE
         BillingMode: PAY_PER_REQUEST
+        PointInTimeRecoverySpecification:
+          PointInTimeRecoveryEnabled: true
